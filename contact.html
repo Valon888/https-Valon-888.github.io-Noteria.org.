@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakti</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      min-height: 100vh;
+      background: linear-gradient(120deg, #3b6ca8 0%, #7ed6df 100%);
+      font-family: 'Montserrat', sans-serif;
+      transition: background 0.3s;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: rgba(255,255,255,0.85);
+      border-radius: 22px;
+      box-shadow: 0 8px 32px rgba(60, 80, 120, 0.18);
+      padding: 48px 36px 36px 36px;
+      position: relative;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(60,80,120,0.08);
+      animation: fadeIn 0.7s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: none; }
+    }
+    .contact-info {
+      font-size: 1.05rem;
+      color: #444;
+      margin-bottom: 0;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #3b6ca8;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    .desc {
+      text-align: center;
+      font-size: 1.08rem;
+      color: #3b6ca8;
+      margin-bottom: 18px;
+    }
+    form {
+      max-width: 420px;
+      margin: 0 auto 32px auto;
+      text-align: left;
+      background: #f8fafc;
+      padding: 24px 18px 18px 18px;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(60,80,120,0.06);
+      position: relative;
+    }
+    label {
+      font-weight: 600;
+      color: #3b6ca8;
+      margin-bottom: 2px;
+      font-size: 1rem;
+      position: relative;
+    }
+    .tooltip {
+      position: absolute;
+      left: 105%;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #3b6ca8;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(60,80,120,0.10);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      z-index: 10;
+    }
+    label:hover .tooltip {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    input[type="text"], input[type="email"], textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1.5px solid #e0e7ef;
+      font-size: 1rem;
+      background: #fff;
+      margin-bottom: 14px;
+      transition: border 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+      border-color: #3b6ca8;
+      box-shadow: 0 0 0 2px #7ed6df44;
+    }
+    button[type="submit"] {
+      width: 100%;
+      background: linear-gradient(90deg,#3b6ca8 0%,#2a4d7a 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 0;
+      font-size: 1.08rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(60,80,120,0.08);
+      transition: background 0.2s,transform 0.2s;
+    }
+    button[type="submit"]:hover {
+      background: linear-gradient(90deg,#2a4d7a 0%,#3b6ca8 100%);
+      transform: translateY(-2px) scale(1.03);
+    }
+    .contact-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 18px;
+      background: rgba(255,255,255,0.65);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(60,80,120,0.10);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      margin-bottom: 10px;
+      animation: fadeIn 0.8s;
+    }
+    .contact-table td {
+      padding: 12px 10px;
+      vertical-align: middle;
+    }
+    .contact-table .icon-cell {
+      width: 48px;
+      text-align: center;
+      font-size: 1.5rem;
+      color: #3b6ca8;
+      background: rgba(60,80,120,0.07);
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(60,80,120,0.08);
+      transition: background 0.2s, color 0.2s;
+    }
+    .contact-table .icon-cell:hover {
+      background: #ff9800;
+      color: #fff;
+    }
+    .contact-table input[type="text"],
+    .contact-table input[type="email"],
+    .contact-table textarea {
+      margin-top: 6px;
+      margin-bottom: 0;
+      box-shadow: 0 1px 6px rgba(60,80,120,0.07);
+      border-radius: 8px;
+      border: 1.5px solid #e0e7ef;
+      font-size: 1rem;
+      background: #fff;
+      transition: border 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .contact-table input[type="text"]:focus,
+    .contact-table input[type="email"]:focus,
+    .contact-table textarea:focus {
+      border-color: #3b6ca8;
+      box-shadow: 0 0 0 2px #7ed6df44;
+    }
+    .contact-table label {
+      font-weight: 600;
+      color: #3b6ca8;
+      font-size: 1rem;
+      position: relative;
+      margin-bottom: 2px;
+      display: block;
+      letter-spacing: 0.5px;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 18px 4vw 18px 4vw;
+      }
+      form {
+        padding: 12px 2vw 12px 2vw;
+      }
+      .contact-table td {
+        padding: 8px 2vw;
+      }
+      .contact-table .icon-cell {
+        font-size: 1.2rem;
+        width: 36px;
+      }
+    }
+    /* Modal styles */
+    #modal-overlay {
+      display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.45); z-index:9999; justify-content:center; align-items:center;
+    }
+    #modal-box {
+      background:#fff; color:#222; border-radius:14px; max-width:340px; width:90vw; padding:2rem 1.5rem; box-shadow:0 8px 32px rgba(0,0,0,0.18); text-align:center; position:relative; animation: modalFadeIn 0.4s;
+    }
+    #modal-close {
+      position:absolute; top:10px; right:15px; font-size:1.5rem; cursor:pointer; color:#888;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    body.dark {
+      background: linear-gradient(120deg, #232946 0%, #3b6ca8 100%);
+    }
+    body.dark .container {
+      background: rgba(34,41,70,0.92);
+      color: #fff;
+      border: 1.5px solid #3b6ca8;
+    }
+    body.dark h1, body.dark label, body.dark .quick-links, body.dark .desc {
+      color: #fff;
+    }
+    body.dark input[type="text"], body.dark input[type="email"], body.dark textarea {
+      background: #232946;
+      color: #fff;
+      border-color: #3b6ca8;
+    }
+    body.dark button[type="submit"] {
+      background: linear-gradient(90deg, #232946 60%, #ff9800 100%);
+      color: #fff;
+    }
+    body.dark .social-links a {
+      background: #232946;
+      color: #fff;
+      border: 1px solid #3b6ca8;
+    }
+    body.dark .social-links a:hover {
+      background: #ff9800;
+      color: #fff;
+    }
+    body.dark .tooltip {
+      background: #ff9800;
+      color: #232946;
+    }
+    body.dark #modal-box {
+      background: #232946;
+      color: #fff;
+    }
+    body.dark #modal-close {
+      color: #ff9800;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Modal for confirmation/information -->
+    <div id="modal-overlay">
+      <div id="modal-box">
+        <span id="modal-close">&times;</span>
+        <div id="modal-content">
+          <!-- Content injected by JS -->
+        </div>
+      </div>
+    </div>
+    <button class="dark-mode-toggle" title="Ndrysho pamjen" id="darkModeBtn" style="position:absolute;top:18px;right:18px;"><i class="fas fa-moon"></i></button>
+    <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Contact Icon" style="width:70px;height:70px;display:block;margin:0 auto 18px auto;">
+    <h1>Na Kontaktoni</h1>
+    <div class="desc">
+      Për informacione të mëtejshme, rezervim takimi ose bashkëpunim, ju lutemi plotësoni formularin ose përdorni të dhënat më poshtë.
+    </div>
+    <form id="contactFormDirect" style="max-width:420px;margin:24px auto 0 auto;text-align:left;background:#f8fafc;padding:24px 18px 18px 18px;border-radius:14px;box-shadow:0 2px 8px rgba(60,80,120,0.06);">
+  <div style="padding:32px 28px 28px 28px; background:rgba(255,255,255,0.97); border-radius:18px; box-shadow:0 4px 24px rgba(60,80,120,0.12);">
+        <label for="emriDirect">Emri juaj:
+          <span class="tooltip">Shkruani emrin tuaj të plotë</span>
+        </label><br>
+        <input type="text" id="emriDirect" name="emriDirect" required>
+        <label for="emailDirect">Email:
+          <span class="tooltip">Shkruani email-in e vlefshëm</span>
+        </label><br>
+        <input type="email" id="emailDirect" name="emailDirect" required>
+        <label for="mesazhiDirect">Mesazhi juaj:
+          <span class="tooltip">Shkruani mesazhin tuaj</span>
+        </label><br>
+        <textarea id="mesazhiDirect" name="mesazhiDirect" rows="4" required></textarea>
+        <button type="submit">Dërgo Mesazhin Direkt</button>
+      </div>
+    </form>
+    </div>
+    <div class="contact-info" style="text-align:center;">
+      <div style="padding:32px 28px 28px 28px; background:rgba(255,255,255,0.97); border-radius:18px; box-shadow:0 4px 24px rgba(60,80,120,0.12); display:inline-block;">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" style="width:22px;vertical-align:middle;margin-right:6px;"> <strong>Email:</strong> <a href="mailto:info@noteria.org">info@noteria.org</a><br>
+        <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Phone" style="width:22px;vertical-align:middle;margin-right:6px;"> <strong>Telefon:</strong> +383 45 213 675
+      </div>
+    </div>
+    <div class="social-links">
+      <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+    <div class="quick-links">
+      <span>Lidhje të shpejta:</span>
+      <a href="index.html">Faqja Kryesore</a>
+      <a href="prices.html">Çmimet</a>
+      <a href="appointment.html">Rezervo Termin</a>
+    </div>
+  </div>
+</body>
+<script src="script.js"></script>
+<script>
+// Dark mode toggle
+document.getElementById('darkModeBtn').onclick = function() {
+  document.body.classList.toggle('dark');
+  this.innerHTML = document.body.classList.contains('dark') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+};
+
+// Modal logic for confirmation/information and advanced validation
+document.addEventListener('DOMContentLoaded', function() {
+  var form = document.getElementById('contactForm');
+  var modalOverlay = document.getElementById('modal-overlay');
+  var modalContent = document.getElementById('modal-content');
+  var modalClose = document.getElementById('modal-close');
+  if(form && modalOverlay && modalContent && modalClose) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Advanced validation
+      var emri = document.getElementById('emri').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var mesazhi = document.getElementById('mesazhi').value.trim();
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if(!emri || !email || !mesazhi) {
+        modalContent.innerHTML = '<i class="fas fa-exclamation-circle" style="color:#ff9800; font-size:2.2rem;"></i><h3 style="margin:1rem 0 0.5rem;">Plotësoni të gjitha fushat!</h3><p>Të gjitha fushat janë të detyrueshme.</p>';
+      } else if(!emailRegex.test(email)) {
+        modalContent.innerHTML = '<i class="fas fa-exclamation-triangle" style="color:#ff9800; font-size:2.2rem;"></i><h3 style="margin:1rem 0 0.5rem;">Email-i nuk është i vlefshëm!</h3><p>Ju lutemi shkruani një email të saktë.</p>';
+      } else if(mesazhi.length < 10) {
+        modalContent.innerHTML = '<i class="fas fa-exclamation-triangle" style="color:#ff9800; font-size:2.2rem;"></i><h3 style="margin:1rem 0 0.5rem;">Mesazhi është shumë i shkurtër!</h3><p>Ju lutemi shkruani një mesazh më të detajuar.</p>';
+      } else {
+        modalContent.innerHTML = '<i class="fas fa-check-circle" style="color:#2ecc71; font-size:2.5rem;"></i><h3 style="margin:1rem 0 0.5rem;">Mesazhi u dërgua me sukses!</h3><p>Faleminderit për kontaktin. Do të përgjigjemi së shpejti.</p>';
+        form.reset();
+      }
+      modalOverlay.style.display = 'flex';
+    });
+    modalClose.addEventListener('click', function() {
+      modalOverlay.style.display = 'none';
+    });
+    modalOverlay.addEventListener('click', function(e) {
+      if(e.target === modalOverlay) modalOverlay.style.display = 'none';
+    });
+  }
+});
+</script>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rezervo Termin</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Efekte vizuale për inpute dhe butona */
+    input[type="text"], input[type="email"], input[type="date"], input[type="time"], select, textarea {
+      transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    input[type="text"]:hover, input[type="email"]:hover, input[type="date"]:hover, input[type="time"]:hover, select:hover, textarea:hover {
+      border: 1.5px solid #3b6ca8;
+      box-shadow: 0 2px 8px rgba(60, 80, 120, 0.10);
+      background: #f0f6fb;
+    }
+    input[type="submit"] {
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    input[type="submit"]:active {
+      transform: scale(0.97);
+      box-shadow: 0 1px 4px rgba(60, 80, 120, 0.10);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(120deg, #f8fafc 0%, #e0e7ef 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .appointment-container {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(60, 80, 120, 0.12);
+      padding: 28px 14px 22px 14px;
+      max-width: 340px;
+      width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .appointment-icon {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 18px;
+      border-radius: 50%;
+      box-shadow: 0 2px 12px rgba(60, 80, 120, 0.10);
+    }
+    h1 {
+      font-size: 2rem;
+      color: #2a4d7a;
+      margin-bottom: 18px;
+    }
+    .desc {
+      font-size: 1.08rem;
+      color: #444;
+      margin-bottom: 28px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: left;
+      width: 100%;
+    }
+    label {
+      color: #3b6ca8;
+      font-weight: 600;
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+    input[type="text"], input[type="email"], input[type="date"], input[type="time"], select, textarea {
+      padding: 10px 12px;
+      border: 1px solid #e0e7ef;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #f8fafc;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    input:focus, select:focus, textarea:focus {
+      border: 1.5px solid #3b6ca8;
+      outline: none;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+      max-height: 180px;
+    }
+    input[type="submit"] {
+      background: linear-gradient(90deg, #3b6ca8 0%, #2a4d7a 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 0;
+      font-size: 1.08rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+      box-shadow: 0 2px 8px rgba(60, 80, 120, 0.08);
+    }
+    input[type="submit"]:hover {
+      background: linear-gradient(90deg, #2a4d7a 0%, #3b6ca8 100%);
+      transform: translateY(-2px) scale(1.03);
+    }
+    .error {
+      color: #e74c3c;
+      font-size: 0.9rem;
+      margin-top: -12px;
+      margin-bottom: 12px;
+    }
+    .back-home {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: #3b6ca8;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+    .back-home:hover {
+      color: #2a4d7a;
+      text-decoration: underline;
+    }
+    @media (max-width: 900px) {
+      .appointment-container { max-width: 96vw; padding: 16px 2vw; }
+      h1 { font-size: 1.3rem; }
+    }
+    @media (max-width: 600px) {
+      .appointment-container { border-radius: 0; box-shadow: none; }
+      h1 { font-size: 1rem; }
+    }
+
+    /* 🌙 Dark mode */
+    .dark-mode {
+      background: linear-gradient(120deg, #23272f 0%, #3a4250 100%) !important;
+      color: #e0e7ef !important;
+    }
+    .dark-mode .appointment-container {
+      background: #23272f !important;
+      color: #e0e7ef !important;
+    }
+    .dark-mode input, .dark-mode select, .dark-mode textarea {
+      background: #2a2f3a !important;
+      color: #e0e7ef !important;
+      border: 1px solid #444 !important;
+    }
+    .dark-mode label { color: #8ab4f8 !important; }
+    .dark-mode .back-home { color: #8ab4f8 !important; }
+    .dark-mode .error { color: #ffb4b4 !important; }
+    .dark-toggle:hover { background: #cfd8dc; }
+  </style>
+</head>
+
+<body>
+  <!-- Butoni i ndërrimit dark/light -->
+  <button class="dark-toggle" id="darkToggle" title="Ndrysho pamjen"
+    style="position: absolute; top: 24px; right: 24px; background: #e0e7ef; border: none; border-radius: 50%; width: 38px; height: 38px; cursor: pointer; box-shadow: 0 2px 8px rgba(60,80,120,0.10); display: flex; align-items: center; justify-content: center;">
+    <img src="https://cdn-icons-png.flaticon.com/512/6714/6714978.png" alt="Dark Mode" style="width: 22px; height: 22px;">
+  </button>
+
+  <div class="appointment-container">
+    <img src="https://cdn-icons-png.flaticon.com/512/2922/2922506.png" alt="Appointment Icon" class="appointment-icon">
+    <h1>Rezervo Termin</h1>
+    <div class="desc">Plotësoni të dhënat për të rezervuar një takim për shërbimet noteriale.</div>
+
+    <a href="index.html" class="back-home">&larr; Kthehu te faqja kryesore</a>
+
+    <form id="appointmentForm" autocomplete="off">
+      <label for="emri">Emri dhe Mbiemri:</label>
+      <input type="text" id="emri" name="emri" required>
+      <div class="error" id="emriError"></div>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <div class="error" id="emailError"></div>
+
+      <label for="telefoni">Telefoni:</label>
+      <input type="text" id="telefoni" name="telefoni" required>
+      <div class="error" id="telefoniError"></div>
+
+      <label for="sherbimi">Shërbimi Noterial:</label>
+      <select id="sherbimi" name="sherbimi" required>
+        <option value="">Zgjidh shërbimin...</option>
+        <option value="noterizim">Noterizim dokumentesh</option>
+        <option value="prokura">Prokurë</option>
+        <option value="deklarate">Deklaratë</option>
+        <option value="legalizim">Legalizim/Apostil</option>
+        <option value="testament">Testament</option>
+        <option value="keshillim">Këshillim ligjor</option>
+        <option value="tjera">Tjetër</option>
+      </select>
+
+      <label for="data">Data e dëshiruar:</label>
+      <input type="date" id="data" name="data" required>
+      <div class="error" id="dataError"></div>
+
+      <label for="ora">Ora e dëshiruar:</label>
+      <input type="time" id="ora" name="ora" required>
+      <div class="error" id="oraError"></div>
+
+      <label for="mesazhi">Mesazhi (opsionale):</label>
+      <textarea id="mesazhi" name="mesazhi" rows="3" placeholder="Shënime shtesë..."></textarea>
+
+      <input type="submit" value="Rezervo Terminin">
+    </form>
+
+    <!-- ✅ Mesazhe -->
+    <div id="successMsg" style="display:none;margin-top:18px;background:#e6fbe6;color:#217a36;padding:14px 10px;border-radius:8px;font-weight:600;">Termini u rezervua me sukses! Do të kontaktoheni së shpejti.</div>
+    <div id="errorMsg" style="display:none;margin-top:18px;background:#fdecea;color:#c0392b;padding:14px 10px;border-radius:8px;font-weight:600;">Ju lutemi kontrolloni të dhënat dhe provoni përsëri.</div>
+  </div>
+
+  <script>
+    // Ndërrimi i dark mode
+    document.getElementById('darkToggle').onclick = function() {
+      document.body.classList.toggle('dark-mode');
+    };
+
+    // Validimet
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+    function validatePhone(phone) {
+      return /^\+?\d{8,15}$/.test(phone.replace(/\s/g, ''));
+    }
+    function validateDate(dateStr) {
+      const today = new Date();
+      const inputDate = new Date(dateStr);
+      today.setHours(0,0,0,0);
+      return inputDate >= today;
+    }
+
+    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      let valid = true;
+
+      // Pastro mesazhet
+      ['emriError','emailError','telefoniError','dataError','oraError'].forEach(id => document.getElementById(id).textContent = '');
+      document.getElementById('errorMsg').style.display = 'none';
+
+      // Validimet
+      const emri = document.getElementById('emri').value.trim();
+      if (emri.length < 3) {
+        document.getElementById('emriError').textContent = 'Shkruani emrin dhe mbiemrin.';
+        valid = false;
+      }
+
+      const email = document.getElementById('email').value.trim();
+      if (!validateEmail(email)) {
+        document.getElementById('emailError').textContent = 'Email i pavlefshëm.';
+        valid = false;
+      }
+
+      const telefoni = document.getElementById('telefoni').value.trim();
+      if (!validatePhone(telefoni)) {
+        document.getElementById('telefoniError').textContent = 'Numër telefoni i pavlefshëm.';
+        valid = false;
+      }
+
+      const data = document.getElementById('data').value;
+      if (!validateDate(data)) {
+        document.getElementById('dataError').textContent = 'Zgjidhni një datë të vlefshme.';
+        valid = false;
+      }
+
+      const ora = document.getElementById('ora').value;
+      if (!ora) {
+        document.getElementById('oraError').textContent = 'Zgjidhni orën.';
+        valid = false;
+      }
+
+      if (valid) {
+        document.getElementById('successMsg').style.display = 'block';
+        setTimeout(function(){
+          document.getElementById('successMsg').style.display = 'none';
+          document.getElementById('appointmentForm').reset();
+        }, 4000);
+      } else {
+        document.getElementById('errorMsg').style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

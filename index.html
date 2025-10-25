@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <link rel="icon" type="image/png" href="noteria-logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noteria.org - Shërbime Noteriale Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #003366;
+            --accent-color: #ff7d00;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --text-color: #495057;
+            --white: #ffffff;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .logo-text h1 {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu li {
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-menu .current-menu-item a {
+            background-color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            padding: 100px 0;
+            color: var(--white);
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 56, 101, 0.7);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #e67300;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--secondary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-size: 2.5rem;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-content h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+        }
+
+        /* Features Section */
+        .features {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 80px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-item h3 {
+            margin-top: 0;
+        }
+
+        /* Appointment Section */
+        .appointment {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+
+        .appointment-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .appointment-form {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: rgba(0, 86, 179, 0.1);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }
+
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            margin: 0 0 5px;
+        }
+
+        .author-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 60px 0 0;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-widget h3 {
+            color: var(--white);
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-widget ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-widget ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-widget ul li a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-widget ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: var(--white);
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #adb5bd;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .appointment-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .appointment-image {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-menu li {
+                margin: 5px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container" style="display:flex;align-items:center;gap:18px;">
+                <img src="ChatGPT Image Oct 25, 2025, 12_38_05 AM.png" alt="Noteria.org Logo" style="width:90px;height:90px;object-fit:contain;">
+            <div class="logo-text">
+                <h1 style="margin-bottom:2px;">Noteria.org</h1>
+                <p style="margin-top:0;">Shërbime Noteriale Online</p>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="current-menu-item">
+                        <a href="index.html">Faqja Kryesore</a>
+                    </li>
+                    <li>
+                        <a href="about.html">Rreth Nesh</a>
+                    </li>
+                    <li>
+                        <a href="services.html">Shërbimet</a>
+                    </li>
+                    <li>
+                        <a href="prices.html">Çmimet</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Kontakto</a>
+                    </li>
+                    <li>
+                        <a href="login.html" class="btn">Hyr në Llogari</a>
+                    </li>
+                    <li>
+                        <a href="register.html" class="btn">Regjistrohu</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Shërbime Noteriale të Shpejta dhe të Sigurta</h2>
+            <p>Rezervoni online termin tuaj noterial dhe kurseni kohë. Platforma jonë ju lidh me noterët më të mirë në Kosovë.</p>
+            <a href="appointment.html" class="btn">Rezervo Termin Tani</a>
+        </div>
+    </section>
+
+    <section class="services">
+                <div class="container">
+                    <header style="text-align:center; margin-bottom:18px;"></header> 
+                    </header>
+            <div class="section-title">
+                <h2>Shërbimet Tona</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Autentifikime Dokumentesh</h3>
+                        <p>Autentifikim i nënshkrimeve, kopjeve të dokumenteve dhe verifikime të ndryshme.</p>
+                        <a href="#" class="btn">Më shumë</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Transaksione Pronash</h3>
+                        <p>Regjistrime, shitje, blerje dhe dhurime të pasurive të paluajtshme.</p>
+                        <a href="#" class="btn">Më shumë</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Kontrata dhe Marrëveshje</h3>
+                        <p>Përgatitje dhe verifikim i kontratave të ndryshme sipas legjislacionit.</p>
+                        <a href="#" class="btn">Më shumë</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-passport"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Dokumente Personale</h3>
+                        <p>Dëshmi të ndryshme, deklarata dhe legalizime dokumentesh personale.</p>
+                        <a href="#" class="btn">Më shumë</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Shërbime për Biznese</h3>
+                        <p>Regjistrime biznesi, statutet e kompanive dhe dokumente të tjera juridike.</p>
+                        <a href="#" class="btn">Më shumë</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Dokumente për Jashtë</h3>
+                        <p>Apostile dhe legalizime për përdorim të dokumenteve jashtë vendit.</p>
+                        <a href="#" class="btn">Më shumë</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: var(--white);">Pse të Na Zgjidhni Ne?</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Termine të Shpejta</h3>
+                    <p>Rezervoni online dhe merrni termin më të afërt pa u rrjekur në zyrë.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-euro-sign"></i>
+                    </div>
+                    <h3>Çmime Konkurruese</h3>
+                    <p>Ofrojmë çmime të arsyeshme dhe transparente për të gjitha shërbimet.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Siguri e Plotë</h3>
+                    <p>Të gjitha dokumentet tuaja mbrohen me standardet më të larta të sigurisë.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Asistencë 24/7</h3>
+                    <p>Ekipi ynë është gjithmonë në dispozicion për të përgjigjur pyetjeve tuaja.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="appointment">
+        <div class="container appointment-container">
+            <div class="appointment-form">
+                <h2>Rezervoni Termin Tuaj</h2>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="service">Shërbimi i Dëshiruar</label>
+                        <select id="service" class="form-control" name="service" required>
+                            <option value="">Zgjidhni shërbimin...</option>
+                            <option value="authentication">Autentifikime Dokumentesh</option>
+                            <option value="property">Transaksione Pronash</option>
+                            <option value="contracts">Kontrata dhe Marrëveshje</option>
+                            <option value="personal">Dokumente Personale</option>
+                            <option value="business">Shërbime për Biznese</option>
+                            <option value="international">Dokumente për Jashtë</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date">Data e Preferuar</label>
+                        <input type="date" id="date" class="form-control" name="date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="name">Emri i Plotë</label>
+                        <input type="text" id="name" class="form-control" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Telefoni</label>
+                        <input type="tel" id="phone" class="form-control" name="phone" required>
+                    </div>
+                    
+                    <button type="submit" class="btn">Dërgo Kërkesën</button>
+                </form>
+            </div>
+            
+            <div class="appointment-image">
+                <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Notary Appointment" style="width: 100%; border-radius: 8px;">
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Çfarë Thonë Klientët Tanë</h2>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Shërbim i shkëlqyer dhe profesionist. Përfundova çdo gjë brenda 30 minutash pa asnjë problem. Do të kthehem patjetër!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Agim Krasniqi">
+                        </div>
+                        <div class="author-info">
+                            <h4>Agim Krasniqi</h4>
+                            <p>Prishtinë</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Efikasitet i lartë dhe qasje moderne. E vlerësoj shumë mundësinë për të rezervuar online dhe për të parë çmimet paraprakisht.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Liridona Berisha">
+                        </div>
+                        <div class="author-info">
+                            <h4>Liridona Berisha</h4>
+                            <p>Pejë</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Kisha nevojë urgjente për të legalizuar disa dokumente për punë në Gjermani. Faleminderit për shërbimin e shpejtë dhe të besueshëm.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Bekim Rexhepi">
+                        </div>
+                        <div class="author-info">
+                            <h4>Bekim Rexhepi</h4>
+                            <p>Gjilan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-widget">
+                    <h3>Rreth Nesh</h3>
+                    <p>Noteria.org është platforma kryesore për shërbime noteriale online në Kosovë, duke lidhur qytetarët me noterët më të mirë në vend.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-widget">
+                    <h3>Shërbimet</h3>
+                    <ul>
+                        <li><a href="#">Autentifikime Dokumentesh</a></li>
+                        <li><a href="#">Transaksione Pronash</a></li>
+                        <li><a href="#">Kontrata dhe Marrëveshje</a></li>
+                        <li><a href="#">Dokumente Personale</a></li>
+                        <li><a href="#">Shërbime për Biznese</a></li>
+                        <li><a href="#">Dokumente për Jashtë</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-widget">
+                    <h3>Lidhje të Shpejta</h3>
+                    <ul>
+                        <li><a href="#">Pyetjet e Bëra Shpesh</a></li>
+                        <li><a href="#">Kërkesa për Termin</a></li>
+                        <li><a href="#">Lista e Noterëve</a></li>
+                        <li><a href="#">Çmimet</a></li>
+                        <li><a href="#">Blogu ynë</a></li>
+                        <li><a href="#">Kushtet e Përdorimit</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-widget">
+                    <h3>Kontakto</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Rr. Nëna Terezë, Prishtinë</li>
+                        <li><i class="fas fa-phone"></i> +383 44 123 456</li>
+                        <li><i class="fas fa-envelope"></i> info@noteria.org</li>
+                        <li><i class="fas fa-clock"></i> Hënë-Premte: 08:00-16:00</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Noteria.org. Të gjitha të drejtat e rezervuara.</p>
+            </div>
+           
+        </div>
+    </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+<script>
+    // Your custom JavaScript code can go here
+</script>
+</body>
+</html>

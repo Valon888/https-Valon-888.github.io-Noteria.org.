@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shërbimet</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(60, 80, 120, 0.12);
+      padding: 48px 36px 36px 36px;
+    }
+    .services-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+      margin-top: 36px;
+    }
+    .service {
+      background: #f0f6fb;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(60, 80, 120, 0.06);
+      padding: 28px 24px 22px 24px;
+      width: 290px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .service:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 8px 32px rgba(60, 80, 120, 0.16);
+    }
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 18px;
+    }
+    .service-title {
+      font-size: 1.25rem;
+      color: #3b6ca8;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .service-desc {
+      font-size: 1.05rem;
+      color: #444;
+      margin-bottom: 0;
+    }
+    .contact {
+      background: #f0f6fb;
+      border-radius: 10px;
+      padding: 18px 24px;
+      margin-top: 40px;
+      box-shadow: 0 2px 8px rgba(60, 80, 120, 0.06);
+      text-align: center;
+    }
+    @media (max-width: 700px) {
+      .services-list {
+        flex-direction: column;
+        gap: 18px;
+      }
+      .service {
+        width: 100%;
+      }
+      .container {
+        padding: 18px 6vw 18px 6vw;
+      }
+    }
+    .section-title {
+      color: #3b6ca8;
+      margin-top: 32px;
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Shërbimet</h1>
+    <div class="services-list">
+      <div class="service">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" alt="Noterizim Dokumentesh" class="service-icon">
+        <div class="service-title">Noterizim Dokumentesh</div>
+        <div class="service-desc">Legalizim dhe vërtetim i dokumenteve të ndryshme, kontratave, deklaratave dhe akteve të tjera zyrtare.</div>
+      </div>
+      <div class="service">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="Këshillim Ligjor" class="service-icon">
+        <div class="service-title">Këshillim Ligjor</div>
+        <div class="service-desc">Këshilla profesionale për çështje ligjore, përgatitje dokumentacioni dhe ndihmë në procedura gjyqësore apo administrative.</div>
+      </div>
+      <div class="service">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135776.png" alt="Përfaqësim Noterial" class="service-icon">
+        <div class="service-title">Përfaqësim Noterial</div>
+        <div class="service-desc">Përfaqësim në transaksione të ndryshme, përpilim aktesh noteriale dhe ndjekje e procedurave të legalizimit.</div>
+      </div>
+      <div class="service">
+    <h2 class="section-title">Çfarë ofrojnë zyrat noteriale në Kosovë?</h2>
+        <div class="service-title">Shërbime të tjera</div>
+        <div class="service-desc">Përkthim i dokumenteve, apostil, legalizime ndërkombëtare dhe asistencë në shërbime të ndryshme noteriale.</div>
+      </div>
+    </div>
+    <hr class="divider">
+    <h2 style="color:#3b6ca8;margin-top:32px;margin-bottom:10px;font-size:1.5rem;">Çfarë ofrojnë zyrat noteriale në Kosovë?</h2>
+    <ul style="font-size:1.08rem;line-height:1.7;margin-bottom:24px;padding-left:22px;">
+      <li>Noterizimi i kontratave të shitblerjes së pasurive të paluajtshme dhe të luajtshme</li>
+      <li>Noterizimi i kontratave të dhurimit, qirasë, huazimit, pengut etj.</li>
+      <li>Hartimi dhe vërtetimi i testamentit</li>
+      <li>Noterizimi i deklaratave të ndryshme (deklarata për udhëtim, deklarata prindërore, etj.)</li>
+      <li>Legalizimi i dokumenteve të ndryshme</li>
+      <li>Vërtetimi i nënshkrimeve dhe kopjeve të dokumenteve</li>
+      <li>Hartimi dhe vërtetimi i prokurave të përgjithshme dhe të posaçme</li>
+      <li>Noterizimi i marrëveshjeve të bashkëpunimit, ortakërisë, ndarjes së pasurisë, etj.</li>
+      <li>Shërbime të apostilimit dhe legalizimit ndërkombëtar të dokumenteve</li>
+      <li>Noterizimi i kontratave të kredive dhe hipotekave</li>
+      <li>Noterizimi i akteve të themelimit të shoqërive tregtare</li>
+      <li>Noterizimi i marrëveshjeve të trashëgimisë dhe ndarjes së pasurisë</li>
+      <li>Këshillim ligjor për çështje noteriale dhe procedura të ndryshme</li>
+      <li>Ruajtja e dokumenteve dhe testamenteve në depozitë noteriale</li>
+      <li>Shërbime të tjera të përcaktuara me ligj</li>
+      <li> Të gjitha këto ju ofrohen në Noteria.org</li>
+    </ul>
+    <div class="contact">
+      <h2>Na Kontaktoni</h2>
+      <p>
+        Për informacione të mëtejshme ose për të rezervuar një takim:<br>
+        <strong>Email:</strong> <a href="mailto:info@noteria.org">info@noteria.org</a><br>
+        <strong>Telefon:</strong> +38345213675
+      </p>
+    </div>
+  </div>
+</body>
+<script src="script.js"></script>
+</html>
